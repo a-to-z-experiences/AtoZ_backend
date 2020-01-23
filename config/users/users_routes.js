@@ -26,7 +26,7 @@ function users(req, res) {
     });
 }
 
-////GET USER BY ID /////
+/////GET USER BY ID /////
 function userById(req, res) {
   const id = req.params.id;
   Users.getUserById(id)
