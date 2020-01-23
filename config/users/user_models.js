@@ -72,7 +72,7 @@ async function deleteUsersAttendingExperiences(id) {
 
   //   return "user.username", event;
   // } catch (error) {}
-  const id = await db("attendance").del(attend);
+  id = await db("attendance").del(attend);
 
   return id;
 }
