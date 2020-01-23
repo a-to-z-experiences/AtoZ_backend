@@ -12,7 +12,7 @@ module.exports = server => {
 
 ///// SANITY CHECK //////
 function testServer(req, res) {
-  res.send("Sanity Check!");
+  res.send("Welcome to A to Z backend!");
 }
 
 ///// REGISTER /////
@@ -27,9 +27,7 @@ function register(req, res) {
       const token = generateToken(newUser);
       console.log("TOKEN:", token);
       res.status(201).json({
-        message: `Welcome ${
-          user.username
-        }! You have been successfully registered!`,
+        message: `Welcome ${user.username}! You have been successfully registered!`,
         newUser,
         token
       });
