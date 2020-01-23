@@ -1,19 +1,20 @@
 const express = require("express");
+const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
 const server = express();
 
-const configureRoutes = require("../config/routes.js");
+const authRoutes = require("../config/auth/authRoutes.js");
+const experiencesRoutes = require("../config/experiences/experiences_routes.js");
+const usersRoutes = require("../config/users/users_routes.js");
 
+server.use(morgan("dev"));
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-configureRoutes(server);
-
-// sanity check
-server.get("/", (req, res) => {
-  res.send(`<h2> I'm runninnnnnnnnnnn</h2>`);
-});
+authRoutes(server);
+experiencesRoutes(server);
+usersRoutes(server);
 
 module.exports = server;
