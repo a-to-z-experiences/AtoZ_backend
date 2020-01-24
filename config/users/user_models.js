@@ -70,7 +70,7 @@ async function deleteUsersAttendingExperiences(id) {
   //     .where("attendance.user_id", id)
   //     .del(event);
 
-  //   return "user.username", event;
+  //   return "user.username ", event;
   // } catch (error) {}
   id = await db("attendance").del(attend);
 
