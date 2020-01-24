@@ -12,7 +12,17 @@ module.exports = server => {
 
 ///// SANITY CHECK //////
 function testServer(req, res) {
-  res.send("Welcome to A to Z backend!");
+  res.send(
+    "<h1> Welcome to A to Z Backend!</h1>" +
+      "<br/>" +
+      "Built by: Leslie Thompson" +
+      "<br />" +
+      "<br />" +
+      "GitHub: https://github.com/a-to-z-experiences/AtoZ_backend" +
+      "<br />" +
+      "<br />" +
+      "Deployed Backend: https://atoz-backend.herokuapp.com"
+  );
 }
 
 ///// REGISTER /////
