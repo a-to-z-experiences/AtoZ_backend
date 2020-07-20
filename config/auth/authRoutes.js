@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { authenticate, generateToken } = require("../../auth/authenticate");
 
-module.exports = server => {
+module.exports = (server) => {
   server.get("/", testServer);
   server.post("/api/register", register);
   server.post("/api/login", login);
@@ -21,7 +21,10 @@ function testServer(req, res) {
       "GitHub: https://github.com/a-to-z-experiences/AtoZ_backend" +
       "<br />" +
       "<br />" +
-      "Deployed Backend: https://atoz-backend.herokuapp.com"
+      "Deployed Backend: https://atoz-backend.herokuapp.com" +
+      "<br />" +
+      "<br />" +
+      "Test using an API testing tool"
   );
 }
 
@@ -33,16 +36,16 @@ function register(req, res) {
   user.password = hash;
 
   Users.add(user)
-    .then(newUser => {
+    .then((newUser) => {
       const token = generateToken(newUser);
       console.log("TOKEN:", token);
       res.status(201).json({
         message: `Welcome ${user.username}! You have been successfully registered!`,
         newUser,
-        token
+        token,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("register", err);
       res
         .status(500)
@@ -57,7 +60,7 @@ function login(req, res) {
 
   Users.findBy({ username })
     .first()
-    .then(user => {
+    .then((user) => {
       if (user && bcrypt.compareSync(password, user.password)) {
         // generate token
         const token = generateToken(user);
@@ -65,7 +68,7 @@ function login(req, res) {
         res.status(200).json({
           user,
           message: `Welcome ${user.username}!`,
-          token //return the token upon login
+          token, //return the token upon login
         });
       } else {
         res
@@ -73,7 +76,7 @@ function login(req, res) {
           .json({ message: "Wrong username or password. Try again." });
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.log("Login error", error);
       res
         .status(500)
